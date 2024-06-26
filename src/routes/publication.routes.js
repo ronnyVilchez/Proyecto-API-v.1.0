@@ -3,12 +3,12 @@ import { categoryPublication, createPublication, deletePublication, readPublicat
 
 const router = Router()
 
-router.get('/', readPublication) // --> '/?publicationId'
-router.post('/', createPublication) // --> '/?profileId=(admin || user)'  **Requiere category_id en Array en el body
-router.patch('/', updatePublication) // --> '/?publicationId= ID & profileId=(admin || user)
-router.delete('/', deletePublication) // --> '/?publicationId= ID & profileId=(admin || user)
+router.get('/:publicationId', readPublication) // --> '/?publicationId'
+router.post('/:profileId', createPublication) // --> '/?profileId=(admin || user)'  **Requiere category_id en Array en el body
+router.patch('/:publicationId/:profileId', updatePublication) // --> '/?publicationId= ID & profileId=(admin || user)
+router.delete('/:publicationId/:profileId', deletePublication) // --> '/?publicationId= ID & profileId=(admin || user)
 
-router.get('/category', categoryPublication) // -->  **Filtra por categoria
-router.get('/title', titlePublication) // -->  **Busqueda por titulo
+router.get('/:categoryId', categoryPublication) // -->  **Filtra por categoria
+router.get('/:title', titlePublication) // -->  **Busqueda por titulo
 
 export default router

@@ -183,13 +183,14 @@
         }
       }
     },
-    "/publication/": {
+    "/publication/{publicationId}": {
       "get": {
         "description": "",
         "parameters": [
           {
             "name": "publicationId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -204,13 +205,16 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/publication/{profileId}": {
       "post": {
         "description": "",
         "parameters": [
           {
             "name": "profileId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
@@ -226,7 +230,7 @@
                   "example": "any"
                 },
                 "category_id": {
-                  "example": "any"
+                  "example": [1]
                 }
               }
             }
@@ -243,18 +247,22 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/publication/{publicationId}/{profileId}": {
       "patch": {
         "description": "",
         "parameters": [
           {
-            "name": "profileId",
-            "in": "query",
+            "name": "publicationId",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
-            "name": "publicationId",
-            "in": "query",
+            "name": "profileId",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
@@ -270,7 +278,7 @@
                   "example": "any"
                 },
                 "category_id": {
-                  "example": "any"
+                  "example": [1]
                 }
               }
             }
@@ -289,13 +297,15 @@
         "description": "",
         "parameters": [
           {
-            "name": "profileId",
-            "in": "query",
+            "name": "publicationId",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
-            "name": "publicationId",
-            "in": "query",
+            "name": "profileId",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -309,13 +319,14 @@
         }
       }
     },
-    "/publication/category": {
+    "/publication/{categoryId}": {
       "get": {
         "description": "",
         "parameters": [
           {
             "name": "categoryId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -332,13 +343,14 @@
         }
       }
     },
-    "/publication/title": {
+    "/publication/{title}": {
       "get": {
         "description": "",
         "parameters": [
           {
             "name": "title",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -355,13 +367,14 @@
         }
       }
     },
-    "/comment/": {
+    "/comment/{publicationId}": {
       "get": {
         "description": "",
         "parameters": [
           {
             "name": "publicationId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -376,18 +389,22 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/comment/{publicationId}/{profileId}": {
       "post": {
         "description": "",
         "parameters": [
           {
             "name": "publicationId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
             "name": "profileId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
@@ -417,12 +434,14 @@
         "parameters": [
           {
             "name": "publicationId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
             "name": "profileId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
@@ -449,18 +468,22 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/comment/{profileId}/{commentId}": {
       "delete": {
         "description": "",
         "parameters": [
           {
             "name": "profileId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
             "name": "commentId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -474,13 +497,14 @@
         }
       }
     },
-    "/category/": {
+    "/category/{profileId}": {
       "get": {
         "description": "",
         "parameters": [
           {
             "name": "profileId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -504,7 +528,8 @@
         "parameters": [
           {
             "name": "profileId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
@@ -537,7 +562,8 @@
         "parameters": [
           {
             "name": "profileId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
@@ -567,18 +593,22 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/category/{profileId}/{categoryId}": {
       "delete": {
         "description": "",
         "parameters": [
           {
             "name": "profileId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
             "name": "categoryId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],

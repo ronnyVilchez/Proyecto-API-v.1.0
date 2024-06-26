@@ -3,9 +3,9 @@ import { createCategory, deleteCategory, readCategory, updateCategory } from '..
 
 const router = Router()
 
-router.get('/', readCategory) // --> '/?profileId= ID
-router.post('/', createCategory) // --> '/?profileId= ID
-router.patch('/', updateCategory) // --> '/?profileId= ID
-router.delete('/', deleteCategory) // --> '/?profileId= ID categoryId= ID
+router.get('/:profileId', readCategory)
+router.post('/:profileId', createCategory)
+router.patch('/:profileId', updateCategory)
+router.delete('/:profileId/:categoryId', deleteCategory)
 
 export default router

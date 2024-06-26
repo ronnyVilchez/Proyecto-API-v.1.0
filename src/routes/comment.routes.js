@@ -3,9 +3,9 @@ import { createComment, deleteComment, readComment, updateComment } from '../con
 
 const router = Router()
 
-router.get('/', readComment) // --> '/?publicationId= ID
-router.post('/', createComment) // --> '/?publicationId= ID & profileId=(admin || user)
-router.patch('/', updateComment) // --> '/?publicationId= ID & profileId=(admin || user)  **Body requiere comment_id
-router.delete('/', deleteComment) // --> '/?commentId= ID & profileId=(admin || user)
+router.get('/:publicationId', readComment)
+router.post('/:publicationId/:profileId', createComment)
+router.patch('/:publicationId/:profileId', updateComment) //* *Body requiere category_id
+router.delete('/:profileId/:commentId', deleteComment)
 
 export default router

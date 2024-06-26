@@ -1,8 +1,10 @@
 import { pool } from '../config/db.js'
 
+/* -----------------CRUD CATEGORY------------------- */
+
 export const readCategory = async (req, res) => {
   try {
-    const profileId = req.query.profileId
+    const profileId = req.params.profileId
 
     if (profileId == 1) {
       const [category] = await pool.execute('SELECT * FROM category')
@@ -22,7 +24,7 @@ export const readCategory = async (req, res) => {
 
 export const createCategory = async (req, res) => {
   try {
-    const profileId = req.query.profileId
+    const profileId = req.params.profileId
     const { description } = req.body
     if (profileId == 1) {
       const [commentNew] = await pool.execute('INSERT INTO category (description) VALUES(?)', [description])
@@ -39,7 +41,7 @@ export const createCategory = async (req, res) => {
 
 export const updateCategory = async (req, res) => {
   try {
-    const profileId = req.query.profileId
+    const profileId = req.params.profileId
 
     const { category_id, description } = req.body
 
@@ -58,8 +60,8 @@ export const updateCategory = async (req, res) => {
 
 export const deleteCategory = async (req, res) => {
   try {
-    const profileId = req.query.profileId
-    const categoryId = req.query.categoryId
+    const profileId = req.params.profileId
+    const categoryId = req.params.categoryId
 
     if (profileId == 1) {
       const [deleteCategory] = await pool.execute('DELETE FROM category WHERE category_id=?', [categoryId])

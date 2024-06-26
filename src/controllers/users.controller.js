@@ -1,6 +1,6 @@
 import { pool } from '../config/db.js'
 
-/* -----------------CRUD PERFIL------------------- */
+/* -----------------CRUD PERFIL------------------ */
 
 export const readProfileUser = async (req, res) => {
   try {

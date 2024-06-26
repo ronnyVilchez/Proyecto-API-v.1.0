@@ -4,7 +4,7 @@ import { pool } from '../config/db.js'
 
 export const readComment = async (req, res) => {
   try {
-    const publicationId = req.query.publicationId
+    const publicationId = req.params.publicationId
 
     if (publicationId) {
       const [comment] = await pool.execute(`SELECT c.* FROM publication p INNER JOIN comment c
@@ -26,8 +26,8 @@ export const readComment = async (req, res) => {
 
 export const createComment = async (req, res) => {
   try {
-    const publicationId = req.query.publicationId
-    const profileId = req.query.profileId
+    const publicationId = req.params.publicationId
+    const profileId = req.params.profileId
     const { description } = req.body
 
     const [commentNew] = await pool.execute('INSERT INTO comment (description,publication_id,profile_id) VALUES(?,?,?)', [description, publicationId, profileId])
@@ -43,8 +43,8 @@ export const createComment = async (req, res) => {
 
 export const updateComment = async (req, res) => {
   try {
-    const publicationId = req.query.publicationId
-    const profileId = req.query.profileId
+    const publicationId = req.params.publicationId
+    const profileId = req.params.profileId
     const { comment_id, description } = req.body
 
     switch (profileId) {
@@ -117,8 +117,8 @@ export const updateComment = async (req, res) => {
 
 export const deleteComment = async (req, res) => {
   try {
-    const profileId = req.query.profileId
-    const commentId = req.query.commentId
+    const profileId = req.params.profileId
+    const commentId = req.params.commentId
 
     switch (profileId) {
       case '1':

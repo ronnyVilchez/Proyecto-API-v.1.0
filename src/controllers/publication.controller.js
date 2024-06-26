@@ -4,7 +4,7 @@ import { pool } from '../config/db.js'
 
 export const readPublication = async (req, res) => {
   try {
-    const publicationId = req.query.publicationId
+    const publicationId = req.params.publicationId
     if (publicationId) {
       const [publication] = await pool.execute('SELECT * FROM publication WHERE publication_id=?', [publicationId])
       if (publication.length === 0) { return res.status(404).json({ message: 'No existe esta publicacion' }) }
@@ -21,7 +21,7 @@ export const readPublication = async (req, res) => {
 
 export const createPublication = async (req, res) => {
   try {
-    const profileId = req.query.profileId
+    const profileId = req.params.profileId
 
     const { title, desciption, category_id } = req.body
 
@@ -47,8 +47,8 @@ export const createPublication = async (req, res) => {
 
 export const updatePublication = async (req, res) => {
   try {
-    const profileId = req.query.profileId
-    const publicationId = req.query.publicationId
+    const profileId = req.params.profileId
+    const publicationId = req.params.publicationId
 
     const { title, desciption, category_id } = req.body
 
@@ -146,8 +146,8 @@ export const updatePublication = async (req, res) => {
 
 export const deletePublication = async (req, res) => {
   try {
-    const profileId = req.query.profileId
-    const publicationId = req.query.publicationId
+    const profileId = req.params.profileId
+    const publicationId = req.params.publicationId
 
     switch (profileId) {
       case '1':
@@ -184,37 +184,29 @@ export const deletePublication = async (req, res) => {
 
 export const categoryPublication = async (req, res) => {
   try {
-    const categoryId = req.query.categoryId
-    if (categoryId) {
-      const [publication] = await pool.execute(`SELECT * FROM publication p INNER JOIN publication_category pc
+    const categoryId = req.params.categoryId
+
+    const [publication] = await pool.execute(`SELECT * FROM publication p INNER JOIN publication_category pc
             ON p.publication_id = pc.publication_id
             WHERE pc.category_id=?`, [categoryId])
 
-      if (publication.length === 0) { return res.status(404).json({ message: 'No existen publicaciones para esta categoria' }) }
+    if (publication.length === 0) { return res.status(404).json({ message: 'No existen publicaciones para esta categoria' }) }
 
-      return res.status(200).json({ message: 'Estas son las publicacion para la categoria:', publication })
-    } else {
-      const [publication] = await pool.execute('SELECT * FROM publication')
-      res.status(200).json({ message: 'Bienvenido 😃 estas son todas las publicaciones. Escoge una categoria', publication })
-    }
+    return res.status(200).json({ message: 'Estas son las publicacion para la categoria:', publication })
   } catch (error) {
     res.status(500).json(error)
   }
 }
 export const titlePublication = async (req, res) => {
   try {
-    const titleP = req.query.title
+    const titleP = req.params.title
     const title = `%${titleP}%`
 
-    if (titleP) {
-      const [publication] = await pool.execute('SELECT * FROM publication WHERE title LIKE ?', [title])
+    const [publication] = await pool.execute('SELECT * FROM publication WHERE title LIKE ?', [title])
 
-      if (publication.length === 0) { return res.status(404).json({ message: 'No existen publicaciones con esta palabra' }) }
+    if (publication.length === 0) { return res.status(404).json({ message: 'No existen publicaciones con esta palabra' }) }
 
-      return res.status(200).json({ message: 'Estas son las publicacion que encontre:', publication })
-    } else {
-      return res.status(200).json({ message: 'Bienvenido, INGRESA ALGUNA PALABRA PARA BUSCAR 😃' })
-    }
+    return res.status(200).json({ message: 'Estas son las publicacion que encontre:', publication })
   } catch (error) {
     res.status(500).json(error)
   }
